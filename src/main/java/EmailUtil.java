@@ -3,15 +3,19 @@ import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 public class EmailUtil {
 
     private static final String SMTP_HOST = "smtp.gmail.com";
     private static final int SMTP_PORT = 587;
 
     public static void sendEmail(String toEmail, String subject, String messageBody) throws MessagingException {
+    	
+    	Dotenv dotenv = Dotenv.load();
         // Email credentials
-        final String username = "shivuroopesh6362@gmail.com";
-        final String password = "gcxy tgoh qtbn zfea";
+        final String username = dotenv.get("EMAIL");
+        final String password = dotenv.get("EMAIL_PASSWORD");
 
         // SMTP properties
         Properties props = new Properties();
